@@ -13,4 +13,4 @@ SKY_AREA_SOUTH = SkyArea(0, 24, -50, -90, 7)
 SKY_AREA_URSA_MINOR = SkyArea(14, 18, 60, 90, 9)
 
 SKY_AREA_PIRATE  = SkyArea(4.7, 4.82, 18.3, 19.8, 10)
-HD84406 = SkyArea(8.85, 10.14, 61.2, 65.2, 10)
+HD84406 = SkyArea(8.85, 10.14, 61.2, 65.2, 15)

@@ -1,23 +1,29 @@
-
+import os
 import sky_area
 from input_file import InputFile
 from diagram import Diagram
-from stardata import StarData
+from star_database import StarDatabase
 from coord_calc import CoordCalc
 
 f = InputFile('stardata.csv')
 
-area = sky_area.HD84406
+#area = sky_area.SKY_AREA_TAURUS
+#area = sky_area.HD84406
+title = 'Cetus'
+area = sky_area.SkyArea(50/15, 60/15, 20, 30, 15)
 
-databas = "hygdata.sqlite3"
-sd = StarData(database)
-star_data_list = sd.get_stars(area)
+area = sky_area.SkyArea(44/15, 56/15, 10.75, 19.25, 10)
 
-star_data_list = f.get_stars(area)
+db_file = "hygdata.sqlite3"
+db = StarDatabase(db_file)
+star_data_list = db.get_stars(area)
 
-cc = CoordCalc(star_data_list, area, 500)
+star_data_list_orig = f.get_stars(area)
+
+cc = CoordCalc(star_data_list, area, 800)
 cc.process()
 
-d = Diagram('My Star Map', area, star_data_list)
+d = Diagram(title, area, star_data_list)
 list(map(d.add_curve, cc.calc_curves()))
-d.render_svg('hd84406.svg')
+#d.render_svg('taurus-hyg.svg')
+d.render_svg(os.path.join('output',title+'.svg'))
